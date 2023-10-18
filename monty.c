@@ -83,6 +83,7 @@ int main(int argc, char *argv[])
 	instruction_t instructions[] = {
 		{"push", process_push},
 		{"pall", pall},
+		{"pint", pint},
 		{NULL, NULL}
 	};
 
