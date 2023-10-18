@@ -1,6 +1,6 @@
 #include "monty.h"
 
-#define MAX_LINE_LENGTH 1024
+#define MAX_LENGTH 1024
 
 /**
  * execute - executes each line in the file
@@ -10,7 +10,7 @@
 void execute(FILE *file)
 {
 	stack_t *stack = NULL;
-	char line[MAX_LINE_LENGTH];
+	char line[MAX_LENGTH];
 	unsigned int line_number = 0;
 
 	while (fgets(line, sizeof(line), file) != NULL)
@@ -22,6 +22,8 @@ void execute(FILE *file)
 		opcode = strtok(line, " \t\n");
 		if (opcode != NULL)
 		{
+			int i;
+
 			if (strncmp(opcode, "push", 4) == 0)
 			{
 				char *arg;
@@ -31,6 +33,16 @@ void execute(FILE *file)
 				{
 					fprintf(stderr, "L%d: missing argument for push\n", line_number);
 					exit(EXIT_FAILURE);
+				}
+				for (i = 0; arg[i] != '\0'; i++)
+				{
+					if (i == 0 && (arg[i] == '+' || arg[i] == '-'))
+						continue;
+					if (arg[i] < '0' || arg[i] > '9')
+					{
+						fprintf(stderr, "L%d: usage: push integer\n", line_number);
+						exit(EXIT_FAILURE);
+					}
 				}
 				argument = atoi(arg);
 				push(&stack, argument);
