@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 /**
  * pall - handles the pall in monty code
  * @stack: pointer to pointer to the stack

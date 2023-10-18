@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 /**
  * push - pushs a value to the stack
  * @line: the line number
