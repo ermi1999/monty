@@ -84,6 +84,7 @@ int main(int argc, char *argv[])
 		{"push", process_push},
 		{"pall", pall},
 		{"pint", pint},
+		{"pop", pop},
 		{NULL, NULL}
 	};
 
