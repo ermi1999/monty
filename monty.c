@@ -19,7 +19,7 @@ void execute(FILE *file)
 		int argument;
 
 		line_number++;
-		opcode = strtok(line, " \t\n");
+		opcode = strtok(line, " \t\n$");
 		if (opcode != NULL)
 		{
 			int i;
@@ -28,10 +28,10 @@ void execute(FILE *file)
 			{
 				char *arg;
 
-				arg = strtok(NULL, " \t\n");
+				arg = strtok(NULL, " \t\n$");
 				if (arg == NULL)
 				{
-					fprintf(stderr, "L%d: missing argument for push\n", line_number);
+					fprintf(stderr, "L%d: usage: push integer\n", line_number);
 					exit(EXIT_FAILURE);
 				}
 				for (i = 0; arg[i] != '\0'; i++)
