@@ -4,13 +4,19 @@
 /**
  * process_push - process the "push" opcode
  * @stack: double pointer to the top of the stack
- * @arg: argument string of the push opcode
  * @line_number: current line number
  * Return: Nothing
  */
-void process_push(stack_t **stack, char *arg, unsigned int line_number)
+void process_push(stack_t **stack, unsigned int line_number)
 {
+	char *arg = strtok(NULL, " \t\n$");
 	unsigned int i;
+
+	if (arg == NULL)
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 
 	for (i = 0; arg[i] != '\0'; i++)
 	{
@@ -30,10 +36,10 @@ void process_push(stack_t **stack, char *arg, unsigned int line_number)
  * @file: the file to be looped
  * Return: Nothing
  */
-void execute(FILE *file)
+void execute(FILE *file, instruction_t *instructions)
 {
 	stack_t *stack = NULL;
-	char line[MAX_LENGTH];
+	char line[1024];
 	unsigned int line_number = 0;
 
 	while (fgets(line, sizeof(line), file) != NULL)
@@ -44,22 +50,19 @@ void execute(FILE *file)
 		opcode = strtok(line, " \t\n$");
 		if (opcode != NULL)
 		{
-			if (strncmp(opcode, "push", 4) == 0)
-			{
-				char *arg = strtok(NULL, " \t\n$");
+			int i;
+			int found = 0;
 
-				if (arg == NULL)
-				{
-					fprintf(stderr, "L%d: usage: push integer\n", line_number);
-					exit(EXIT_FAILURE);
-				}
-				process_push(&stack, arg, line_number);
-			}
-			else if (strncmp(opcode, "pall", 4) == 0)
+			for (i = 0; instructions[i].opcode != NULL; i++)
 			{
-				pall(&stack);
+				if (strcmp(opcode, instructions[i].opcode) == 0)
+				{
+					instructions[i].f(&stack, line_number);
+					found = 1;
+					break;
+				}
 			}
-			else
+			if (found == 0)
 			{
 				fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
 				exit(EXIT_FAILURE);
@@ -68,7 +71,6 @@ void execute(FILE *file)
 	}
 	fclose(file);
 }
-
 /**
  * main - monty bytecode interpreter
  * @argc: argument count
@@ -78,6 +80,11 @@ void execute(FILE *file)
 int main(int argc, char *argv[])
 {
 	FILE *file;
+	instruction_t instructions[] = {
+		{"push", process_push},
+		{"pall", pall},
+		{NULL, NULL}
+	};
 
 	if (argc != 2)
 	{
@@ -92,7 +99,7 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	execute(file);
+	execute(file, instructions);
 
 	return (0);
 }
