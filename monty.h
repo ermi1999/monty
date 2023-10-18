@@ -37,5 +37,6 @@ typedef struct instruction_s
 
 void push(stack_t **stack, int num);
 void pall(stack_t **stack);
+void process_push(stack_t **stack, char *arg, unsigned int line_number);
 
 #endif
