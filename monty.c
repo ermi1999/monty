@@ -102,6 +102,7 @@ int main(int argc, char *argv[])
 		{"div", div_stack},
 		{"mul", mul},
 		{"mod", mod},
+		{"#", comment},
 		{NULL, NULL}
 	};
 
