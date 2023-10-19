@@ -81,13 +81,27 @@ void execute(FILE *file, instruction_t *instructions)
 			if (found == 0)
 			{
 				fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
-				free(stack);
+				while (*stack != NULL)
+				{
+					stack_t *temp;
+
+					temp = *stack;
+					*stack = (*stack)->next;
+					free(temp);
+				}
 				exit(EXIT_FAILURE);
 			}
 		}
 	}
 	fclose(file);
-	free(stack);
+	while (*stack != NULL)
+	{
+		stack_t *temp;
+
+		temp = *stack;
+		*stack = (*stack)->next;
+		free(temp);
+	}
 }
 /**
  * main - monty bytecode interpreter
