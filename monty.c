@@ -101,6 +101,7 @@ int main(int argc, char *argv[])
 		{"sub", sub},
 		{"div", div_stack},
 		{"mul", mul},
+		{"mod", mod},
 		{NULL, NULL}
 	};
 
