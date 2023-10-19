@@ -100,6 +100,7 @@ int main(int argc, char *argv[])
 		{"nop", nop},
 		{"sub", sub},
 		{"div", div_stack},
+		{"mul", mul},
 		{NULL, NULL}
 	};
 
