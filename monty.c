@@ -34,6 +34,7 @@ void process_push(stack_t **stack, unsigned int line_number)
 /**
  * execute - executes each line in the file
  * @file: the file to be looped
+ * @instructions: pointer to the instructions struct
  * Return: Nothing
  */
 void execute(FILE *file, instruction_t *instructions)
@@ -86,6 +87,7 @@ int main(int argc, char *argv[])
 		{"pint", pint},
 		{"pop", pop},
 		{"swap", swap},
+		{"add", add},
 		{NULL, NULL}
 	};
 

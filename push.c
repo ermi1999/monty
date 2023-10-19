@@ -1,7 +1,6 @@
 #include "monty.h"
 /**
  * push - pushs a value to the stack
- * @line: the line number
  * @stack: pointer to pointer to the stack
  * @num: the value to be added
  * Return: Nothing

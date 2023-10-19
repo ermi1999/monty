@@ -1,8 +1,8 @@
 #include "monty.h"
 /**
- * pall - handles the pall in monty code
+ * swap - handles the pall in monty code
  * @stack: pointer to pointer to the stack
- * @line: the line number
+ * @line_number: the line number
  * Return: Nothing
  */
 void swap(stack_t **stack, unsigned int line_number)
