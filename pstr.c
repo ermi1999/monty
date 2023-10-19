@@ -19,7 +19,7 @@ void pstr(stack_t **stack, unsigned int line_number)
 
 	while (*stack != NULL && (*stack)->n != 0)
 	{
-		if ((*stack)->n >= 0 && (*stack)->n <= 127)
+		if ((*stack)->n >= 0 && (*stack)->n <= 255)
 		{
 			printf("%c", (*stack)->n);
 		}
