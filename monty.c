@@ -55,6 +55,8 @@ void execute(FILE *file, instruction_t *instructions)
 		char *opcode;
 
 		line_number++;
+		if (line[0] == '#')
+			continue;
 		opcode = strtok(line, " \t\n$");
 		if (opcode != NULL)
 		{
@@ -102,7 +104,6 @@ int main(int argc, char *argv[])
 		{"div", div_stack},
 		{"mul", mul},
 		{"mod", mod},
-		{"#", comment},
 		{NULL, NULL}
 	};
 
