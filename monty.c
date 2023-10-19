@@ -1,8 +1,7 @@
 #include "monty.h"
-#define MAX_LENGTH 1024
 
 /**
- * process_push - process the "push" opcode
+ * process_push - process the push opcode
  * @stack: double pointer to the top of the stack
  * @line_number: current line number
  * Return: Nothing
@@ -71,6 +70,7 @@ void execute(FILE *file, instruction_t *instructions)
 		}
 	}
 	fclose(file);
+	free(stack);
 }
 /**
  * main - monty bytecode interpreter
