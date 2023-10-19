@@ -14,8 +14,15 @@ void process_push(stack_t **stack, unsigned int line_number)
 	if (arg == NULL)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		free(stack);
-		exit(EXIT_FAILURE);
+		while (*stack != NULL)
+		{
+			stack_t *temp;
+
+			temp = *stack;
+			*stack = (*stack)->next;
+			free(temp);
+		}
+			exit(EXIT_FAILURE);
 	}
 
 	for (i = 0; arg[i] != '\0'; i++)
@@ -25,7 +32,14 @@ void process_push(stack_t **stack, unsigned int line_number)
 		if (arg[i] < '0' || arg[i] > '9')
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_number);
-			free(*stack);
+			while (*stack != NULL)
+			{
+				stack_t *temp;
+
+				temp = *stack;
+				*stack = (*stack)->next;
+				free(temp);
+			}
 			exit(EXIT_FAILURE);
 		}
 	}
