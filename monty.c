@@ -14,6 +14,7 @@ void process_push(stack_t **stack, unsigned int line_number)
 	if (arg == NULL)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		free(stack);
 		exit(EXIT_FAILURE);
 	}
 
@@ -24,6 +25,7 @@ void process_push(stack_t **stack, unsigned int line_number)
 		if (arg[i] < '0' || arg[i] > '9')
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_number);
+			free(*stack);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -65,6 +67,7 @@ void execute(FILE *file, instruction_t *instructions)
 			if (found == 0)
 			{
 				fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
+				free(stack);
 				exit(EXIT_FAILURE);
 			}
 		}
