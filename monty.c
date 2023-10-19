@@ -13,16 +13,12 @@ void process_push(stack_t **stack, unsigned int line_number)
 
 	if (arg == NULL)
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		while (*stack != NULL)
-		{
-			stack_t *temp;
+		stack_t *temp;
 
-			temp = *stack;
-			*stack = (*stack)->next;
-			free(temp);
-		}
-			exit(EXIT_FAILURE);
+		temp = *stack;
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		free_stack(&temp);
+		exit(EXIT_FAILURE);
 	}
 
 	for (i = 0; arg[i] != '\0'; i++)
@@ -31,15 +27,11 @@ void process_push(stack_t **stack, unsigned int line_number)
 			continue;
 		if (arg[i] < '0' || arg[i] > '9')
 		{
-			fprintf(stderr, "L%d: usage: push integer\n", line_number);
-			while (*stack != NULL)
-			{
-				stack_t *temp;
+			stack_t *temp;
 
-				temp = *stack;
-				*stack = (*stack)->next;
-				free(temp);
-			}
+			temp = *stack;
+			fprintf(stderr, "L%d: usage: push integer\n", line_number);
+			free_stack(&temp);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -81,27 +73,13 @@ void execute(FILE *file, instruction_t *instructions)
 			if (found == 0)
 			{
 				fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
-				while (*stack != NULL)
-				{
-					stack_t *temp;
-
-					temp = *stack;
-					*stack = (*stack)->next;
-					free(temp);
-				}
+				free_stack(&stack);
 				exit(EXIT_FAILURE);
 			}
 		}
 	}
 	fclose(file);
-	while (*stack != NULL)
-	{
-		stack_t *temp;
-
-		temp = *stack;
-		*stack = (*stack)->next;
-		free(temp);
-	}
+	free_stack(&stack);
 }
 /**
  * main - monty bytecode interpreter
