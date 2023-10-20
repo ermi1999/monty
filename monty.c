@@ -57,7 +57,7 @@ void execute(FILE *file, instruction_t *instructions)
 		line_number++;
 		opcode = strtok(line, " \t\n$");
 		if (opcode[0] == '#')
-                        continue;
+			continue;
 		if (opcode != NULL)
 		{
 			int i, found = 0;
