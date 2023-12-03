@@ -35,3 +35,27 @@ monty [Monty code file]
   pall
   ```
 
+- `mul` multiplies the last two numbers and sets the top element with the result.
+
+  **Usage**
+
+  ```
+  mul
+  ```
+
+- `pint` prints the last number pushed using `push`.
+
+  **Usage**
+
+  ```
+  pint
+  ```
+
+- `rotr` rotrates the last number to the beginning of the numbers pushed.
+
+  **Usage**
+
+  ```
+  rotr
+  ```
+
