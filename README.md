@@ -59,3 +59,83 @@ monty [Monty code file]
   rotr
   ```
 
+- `nop` does nothing.
+
+  **Usage**
+
+  ```
+  nop
+  ```
+
+- `swap` will swap the the top two element which mean the first two pushed elements.
+
+  **Usage**
+
+  ```
+  swap
+  ```
+
+- `pop` will remove the first pushed element from the top.
+
+  **Usage**
+
+  ```
+  pop
+  ```
+
+- `add` will add the top two elements and sets the top element with the result.
+
+  **Usage**
+
+  ```
+  add
+  ```
+
+- `sub` subtracts the top element with the next element and sets the top element with the result.
+
+  **Usage**
+
+  ```
+  sub
+  ```
+
+- `div` divides the top element with the next element and sets the top element with the result.
+
+  **Usage**
+
+  ```
+  div
+  ```
+
+- `mod` divides the top element with the next element and sets the top element with the reminder of the division
+
+  **Usage**
+
+  ```
+  mod
+  ```
+
+- `pchar` returns the character representation of the top element if the number is between a-z or A-Z in ascii code.
+
+  **Usage**
+
+  ```
+  pchar
+  ```
+
+- `pstr` prints the string starting at the top of the stack, followed by a new line.
+
+  **Usage**
+
+  ```
+  pstr
+  ```
+
+- `rotl` rotrates the stack top to bottom.
+
+  **Usage**
+
+  ```
+  rotl
+  ```
+
