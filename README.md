@@ -138,4 +138,3 @@ monty [Monty code file]
   ```
   rotl
   ```
-
